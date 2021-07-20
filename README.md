@@ -1,28 +1,38 @@
 # Apifox 介绍
 
-[Apifox 官网：apifox.cn](https://www.apifox.cn/)
+> Apifox 是 API 文档、调试、Mock、测试一体化协作平台，定位 `Postman + Swagger + Mock + JMeter`。通过一套系统、一份数据，解决多个系统之间的数据同步问题。只要定义好 API 文档，API 调试、API 数据 Mock、API 自动化测试就可以直接使用，无需再次定义；API 文档和 API 开发调试使用同一个工具，API 调试完成后即可保证和 API 文档定义完全一致。高效、及时、准确！
 
-> 软件开发过程中，接口管理、调试、自动化测试是必不可少的，我们经常使用 Postman 等工具来进行接口调试，在接口调试方面 Postman 做的非常出色。但是在整个软件开发过程中，接口调试只是其中的一部分，还有很多事情 Postman 无法完成，或者`无法高效完成`，比如：接口文档定义、Mock 数据、接口自动化测试等等。而 Apifox 就是为此而生的。
+:::tip 下载 PPT
+
+需要 Apifox 功能介绍 PPT 版本的（可用于团队内部分享/推广 Apifox），可点击以下链接下载。
+
+[Apifox 功能介绍 ppt 格式](https://cdn3.apifox.cn/www%2Fassets%2Fppt%2FApifox%E4%BB%8B%E7%BB%8D.pptx)
+
+[Apifox 功能介绍 pdf 格式](https://cdn3.apifox.cn/www%2Fassets%2Fppt%2FApifox%E4%BB%8B%E7%BB%8D.pdf)
+
+:::
 
 ## 接口管理现状
 
 ### 一、常用解决方案
 
-1. 使用 Swagger 管理接口文档
+1. 使用 Swagger 作为[接口文档工具](https://www.apifox.cn/)
 1. 使用 Postman 调试接口
-1. 使用 RAP Mock 数据
+1. 使用 RAP 等工具 Mock 数据
 1. 使用 JMeter 做接口自动化测试
 
 ### 二、存在的问题
 
-维护不同工具之间数据一致性非常困难、非常低效。并且这里不仅仅是工作量的问题，更大的问题是多个系统之间数据不一致，导致协作低效，频繁出问题，开发人员痛苦不堪。
+维护不同工具之间数据一致性非常困难、低效。并且这里不仅仅是工作量的问题，更大的问题是多个系统之间数据不一致，导致协作低效、频繁出问题，开发测试人员痛苦不堪。
 
 1. 开发人员在 Swagger 定义好文档后，接口调试的时候还需要去 Postman 再定义一遍。
-2. 前端开发 Mock 数据的时候又要去 RAP 定义一遍，手动设置好 Mock 规则。
-3. 测试人员需要去 JMeter 定义一遍。
-4. 前端根据 RAP Mock 出来的数据开发完，后端根据 Swagger 定义的接口文档开发完，各自测试测试通过了，本以为可以马上上线，结果一对接发现各种问题：原来开发过程中接口变更，只修改了 Swagger，但是没有及时同步修改 RAP。
-5. 同样，测试在 JMeter 写好的测试用例，真正运行的时候也会发现各种不一致。
-6. 时间久了，各种不一致会越来越严重。
+1. 前端开发 Mock 数据的时候又要去 RAP 定义一遍，还需要手动设置 Mock 规则。
+1. 测试人员需要去 JMeter 再定义一遍。
+1. 前端根据 RAP Mock 出来的数据开发完，后端根据 Swagger 定义的接口文档开发完，各自都试测试通过了，本以为可以马上上线，结果一对接发现各种问题：
+   - 开发过程中接口变更了，只修改了 Swagger，但是没有及时同步修改 RAP。
+   - 后端开发的接口数据类型和文档不一致，肉眼难以发现问题。
+1. 同样，测试在 JMeter 写好的测试用例，真正运行的时候也会发现各种不一致。
+1. 时间久了，各种不一致会越来越严重。
 
 ## Apifox 解决方案
 
@@ -34,12 +44,23 @@
 
 通过一套系统、一份数据，解决多个系统之间的数据同步问题。只要定义好接口文档，接口调试、数据 Mock、接口测试就可以直接使用，无需再次定义；接口文档和接口开发调试使用同一个工具，接口调试完成后即可保证和接口文档定义完全一致。高效、及时、准确！
 
-#### 2、Apifox  功能
+#### 2、Apifox 宗旨
 
-1. 接口文档定义：Apifox 遵循 [OpenApi](https://www.openapis.org/) 3.0 (原Swagger)、[JSON Schema](https://json-schema.org/) 规范的同时，提供了非常好用的可视化文档管理功能，零学习成本，非常高效。
-2. 接口调试：Postman 有的功能，比如环境变量、预执行脚本、后执行脚本、Cookie/Session 全局共享 等功能，Apifox 都有，并且和 Postman 一样高效好用。
-3. 数据 Mock：内置 [Mock.js](http://mockjs.com/) 规则引擎，非常方便 mock 出各种数据，并且可以在定义数据结构的同时写好 mock 规则。支持添加“期望”，灵活配置根据参数值返回不同数据内容。最重要的是 Apifox `零配置` 即可 Mock 出非常人性化的数据，具体在本文后面介绍。
-4. 接口自动化测试：提供接口集合测试，可以通过选择接口（或接口用例）快速创建测试集。目前接口自动化测试更多功能还在开发中，敬请期待！目标是： JMeter 有的功能基本都会有，并且要更好用。
+节省研发团队的每一分钟！
+
+#### 3、Apifox 功能
+
+1. **接口设计**：Apifox 接口文档遵循 [OpenApi](https://www.openapis.org/) 3.0 (原 Swagger)、[JSON Schema](https://json-schema.org/) 规范的同时，提供了非常好用的`可视化`文档管理功能，零学习成本，非常高效。并且支持在线分享接口文档。
+2. **数据模型**：可复用的数据结构，定义接口`返回数据结构`及`请求参数数据结构`（仅 JSON 和 XML 模式）时可直接引用。支持模型直接嵌套引用，直接 JSON/XML 智能导入，支持 oneOf、allOf 等高级组合模式。
+3. **接口调试**：Postman 有的功能，比如环境变量、前置/后置脚本、Cookie/Session 全局共享 等功能，Apifox 都有，并且比 Postman 更高效好用。接口运行完之后点击`保存为用例`按钮，即可生成`接口用例`，后续可直接运行接口用例，无需再输入参数，非常方便。自定义脚本 100% 兼容 Postman 语法，并且支持运行javascript、java、python、php、js、BeanShell、go、shell、ruby、lua等各种语言代码。
+4. **接口用例**：通常一个接口会有多种情况用例，比如`参数正确`用例、`参数错误`用例、`数据为空`用例、`不同数据状态`用例等等。运行接口用例时会自动校验数据正确性，用接口用例来调试接口非常高效。
+5. **接口数据 Mock**：内置 [Mock.js](http://mockjs.com/) 规则引擎，非常方便 mock 出各种数据，并且可以在定义数据结构的同时写好 mock 规则。支持添加“期望”，根据请求参数返回不同 mock 数据。最重要的是 Apifox `零配置` 即可 Mock 出非常人性化的数据，具体在本文后面介绍。
+6. **数据库操作**：支持读取数据库数据，作为接口请求参数使用。支持读取数据库数据，用来校验(断言)接口请求是否成功。
+7. **接口自动化测试**：提供接口集合测试，可以通过选择接口（或接口用例）快速创建测试集。目前接口自动化测试更多功能还在开发中，敬请期待！目标是： JMeter 有的功能基本都会有，并且要更好用。
+8. **快捷调试**：类似 Postman 的接口调试方式，主要用途为临时调试一些`无需文档化`的接口，无需提前定义接口即可快速调试。
+9. **代码生成**：根据接口及数据数据模型定义，系统自动生成`接口请求代码`、`前端业务代码`及`后端业务代码`。
+10. **团队协作**：Apifox 天生就是为团队协作而生的，接口云端实时同步更新，成熟的`团队/项目/成员权限`管理，满足各类企业的需求。
+
 
 ### 二、Apifox 做的不仅仅是数据打通
 
@@ -87,41 +108,42 @@ Apifox 如何做到高效率、零配置生成非常人性化的 mock 数据：
 
 ### 三、更多 Apifox 功能截图
 
-![接口调试](http://cdn.apifox.cn/www/screenshot/frame-apifox-api-case-1.png)
+![接口调试](https://cdn3.apifox.cn/www/screenshot/apifox-api-case-1.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-api-case-2.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-api-case-2.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-api-definition-1.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-api-definition-1.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-schema-1.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-schema-1.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-api-definition-2.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-api-definition-2.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-api-definition-3.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-test-case-1.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-test-suite-1.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-test-case-2.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-test-suite-2.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-test-case-3.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-test-suite-3.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-test-case-4.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-mock-1.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-mock-1.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-mock-2.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-mock-2.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-mock-3.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-mock-3.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-codegen-1.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-codegen-1.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-codegen-2.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-codegen-2.png)
 
-![](http://cdn.apifox.cn/www/screenshot/frame-apifox-setting-import-1.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-setting-import-1.png)
 
-![Apifox 多种主题色可选](http://cdn.apifox.cn/www/screenshot/light-frame-apifox-theme-1.png)
+![](https://cdn3.apifox.cn/www/screenshot/apifox-setting-export-1.png)
 
+![Apifox 多种主题色可选](https://cdn3.apifox.cn/www/screenshot/light-apifox-theme-1.png)
 
-
-### 四、 Apifox 下载地址
+### 五、 Apifox 下载地址
 
 请访问 Apifox 官网下载：[https://www.apifox.cn/](https://www.apifox.cn/)
 
+[接口文档工具](https://www.apifox.cn/)
